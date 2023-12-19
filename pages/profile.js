@@ -8,9 +8,9 @@ import Layout from "@/layout";
         <Layout 
         metaTitle="Profile" 
         metaDescription="Semua informasi ini merupakan seputar profile user">
-          <p>
-            Profile
-          </p>
+       <p>
+        Profile
+      </p>
         </Layout>
       </>
     )
