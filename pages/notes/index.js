@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import {
+  Box,
   Flex,
   Grid,
   GridItem,
@@ -11,11 +12,13 @@ import {
   Text,
   Button,
 } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 const LayoutComponent = dynamic(() => import("@/layout"));
 
 export default function Notes() {
+  const router = useRouter();
   const [notes, setNotes] = useState();
   useEffect(() => {
     async function fetchingData() {
@@ -32,32 +35,42 @@ export default function Notes() {
   return (
     <>
       <LayoutComponent metaTitle="Notes">
-        <Flex>
-          <Grid templateColumns="repeat(3, 1fr)" gap={5}>
-            {notes?.data?.map((item) => (
-              <GridItem>
-                <Card>
-                  <CardHeader>
-                    <Heading>{item?.title}</Heading>
+        <Box padding="5">
+          <Flex justifyContent="end">
+            <Button
+              colorScheme="blue"
+              onClick={() => router.push("/notes/add/")}
+            >
+              Add Notes
+            </Button>
+          </Flex>
+          <Flex>
+            <Grid templateColumns="repeat(3, 1fr)" gap={5}>
+              {notes?.data?.map((item) => (
+                <GridItem>
+                  <Card>
                     <CardHeader>
-                      <CardBody>
-                        <Text>{item?.description}</Text>
-                      </CardBody>
-                      <CardFooter justify="space-between" flexWrap="wrap">
-                        <Button flex="1" variant="ghost">
-                          Edit
-                        </Button>
-                        <Button flex="1" variant="ghost">
-                          Delete
-                        </Button>
-                      </CardFooter>
+                      <Heading>{item?.title}</Heading>
+                      <CardHeader>
+                        <CardBody>
+                          <Text>{item?.description}</Text>
+                        </CardBody>
+                        <CardFooter justify="space-between" flexWrap="wrap">
+                          <Button flex="1" variant="ghost">
+                            Edit
+                          </Button>
+                          <Button flex="1" colorScheme="red">
+                            Delete
+                          </Button>
+                        </CardFooter>
+                      </CardHeader>
                     </CardHeader>
-                  </CardHeader>
-                </Card>
-              </GridItem>
-            ))}
-          </Grid>
-        </Flex>
+                  </Card>
+                </GridItem>
+              ))}
+            </Grid>
+          </Flex>
+        </Box>
       </LayoutComponent>
     </>
   );
