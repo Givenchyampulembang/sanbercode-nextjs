@@ -15,9 +15,16 @@ import {
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
+import { useQueries } from "@/hooks/useQueries";
+
 const LayoutComponent = dynamic(() => import("@/layout"));
 
 export default function Notes() {
+  const { data, isLoading } = useQueries({
+    prefixurl: "https://paace-f178cafcae7b.nevacloud.io/api/notes",
+  });
+
+  console.log("Loading => ", isLoading);
   const router = useRouter();
   const [notes, setNotes] = useState();
 

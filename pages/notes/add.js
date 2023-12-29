@@ -41,7 +41,9 @@ export default function AddNotes() {
       );
 
       const result = await response.json();
-      console.log("result =>", result);
+      if (result?.success) {
+        router.push("/notes/");
+      }
     } catch (error) {}
   };
 
