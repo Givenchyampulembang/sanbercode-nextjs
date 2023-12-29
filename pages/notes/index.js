@@ -56,7 +56,13 @@ export default function Notes() {
                           <Text>{item?.description}</Text>
                         </CardBody>
                         <CardFooter justify="space-between" flexWrap="wrap">
-                          <Button flex="1" variant="ghost">
+                          <Button
+                            onClick={() =>
+                              router.push(`/notes/edit/${item?.id}`)
+                            }
+                            flex="1"
+                            variant="ghost"
+                          >
                             Edit
                           </Button>
                           <Button flex="1" colorScheme="red">
