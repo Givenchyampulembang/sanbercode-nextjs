@@ -6,7 +6,7 @@ export default function DetailNotes({ notes }) {
   console.log("data detail notes =>", notes);
   return (
     <LayoutComponent metaTitle="Detail Notes">
-      <div>
+      <div style={{ border: "1px solid black", margin: "10px" }}>
         <p>tittle : {notes.data.title}</p>
         <p>desc : {notes.data.description}</p>
         <p>create at : {notes.data.created_at}</p>

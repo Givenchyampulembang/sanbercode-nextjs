@@ -10,7 +10,7 @@ export default function Notes({ req }) {
     <>
       <LayoutComponent metaTitle="Posts">
         {req.hero.map((item) => (
-          <div>
+          <div style={{ border: "1px solid black", marginBottom: "10px" }}>
             <p>id : {item.hero_id}</p>
             <p>
               <b>Nama Hero : {item.hero_name}</b>
