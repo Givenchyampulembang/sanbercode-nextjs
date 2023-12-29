@@ -1,4 +1,5 @@
 import dynamic from "next/dynamic";
+import Link from "next/link";
 
 const LayoutComponent = dynamic(() => import("@/layout"));
 
@@ -8,9 +9,8 @@ export default function Notes({ notes }) {
     <>
       <LayoutComponent metaTitle="Notes">
         {notes.data.map((item) => (
-          <div style={{ border: "1px solid grey", marginBottom: "5px" }}>
-            <p>{item.title}</p>
-            <p>{item.description}</p>
+          <div>
+            <Link href={`/notes/${item.id}`}>{item.title}</Link>
           </div>
         ))}
       </LayoutComponent>
@@ -21,5 +21,5 @@ export default function Notes({ notes }) {
 export async function getStaticProps() {
   const res = await fetch("https://simpeg-be.vercel.app/api/v2/notes");
   const notes = await res.json();
-  return { props: { notes } };
+  return { props: { notes }, revalidate: 10 };
 }
