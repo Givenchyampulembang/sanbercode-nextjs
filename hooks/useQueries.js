@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 export const useQueries = ({ prefixurl = "" } = {}) => {
   const [data, setData] = useState({
     data: null,
-    isLoading: false,
+    isLoading: true,
     isError: false,
   });
 
