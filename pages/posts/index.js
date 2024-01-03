@@ -9,14 +9,14 @@ export default function Notes({ req }) {
   return (
     <>
       <LayoutComponent metaTitle="Posts">
-        {req.hero.map((item) => (
+        {req.data.map((item) => (
           <div style={{ border: "1px solid black", marginBottom: "10px" }}>
-            <p>id : {item.hero_id}</p>
+            <p>id : {item.id}</p>
             <p>
-              <b>Nama Hero : {item.hero_name}</b>
+              <b>Title : {item.title}</b>
             </p>
-            <p> Role Hero : {item.hero_role}</p>
-            <p> Hero Specialis : {item.hero_specially}</p>
+            <p> Description : {item.description}</p>
+            <p> create_at : {item.created_at}</p>
 
             <br></br>
           </div>
@@ -27,7 +27,7 @@ export default function Notes({ req }) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch("https://api.dazelpro.com/mobile-legends/hero");
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/notes`);
   const req = await res.json();
   return { props: { req } };
 }

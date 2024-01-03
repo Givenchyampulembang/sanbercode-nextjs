@@ -32,7 +32,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context) {
   const { id } = context.params;
-  const res = await fetch(`https://simpeg-be.vercel.app/api/v2/notes/${id}`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/notes/${id}`);
   const notes = await res.json();
   return { props: { notes }, revalidate: 10 };
 }
